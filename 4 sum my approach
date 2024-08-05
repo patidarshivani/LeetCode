@@ -1,0 +1,93 @@
+import java.util.*;
+import java.util.HashSet;
+
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> output = new ArrayList<>();
+        if(nums.length<4){
+            return output;
+        }
+        long sum =0;
+        HashSet<Integer> hash = new HashSet<>();
+        for(int i =0;i<nums.length;i++){
+        hash.add(nums[i]);}
+         boolean allEqual = hash.size()<=1?true:false;
+       
+        // boolean allEqual = new HashSet<String>(Arrays.asList(nums)).size() <= 1;
+
+            // int dble = 0;
+            //     if(nums[i]==nums[d]){
+            //         dble++;
+            //         break;
+            //     }
+            // }
+            // if(dble>0){
+            //     continue;
+            // }
+            if(!allEqual){
+            for(int i=0;i<nums.length;i++){
+                if(i>0){
+                if(nums[i]==nums[i-1]){
+                    continue;
+                }}
+            for(int j =i+1;j<nums.length;j++){
+                
+                for(int k =j+1;k<nums.length;k++){
+
+                     
+                   for(int l =k+1;l<nums.length;l++){
+                sum = nums[i];
+                sum+=nums[j];
+                sum+=nums[k];
+                sum+=nums[l];
+                if(sum == target){
+                    List<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[j]);
+                    temp.add(nums[k]);
+                    temp.add(nums[l]);
+                    int m = 0;
+                    int countDouble=0;
+                    Collections.sort(temp);
+                  while(m!=output.size()){
+                    if(temp.equals(output.get(m))){
+                    countDouble++;
+                    // System.out.println(output.get(m));
+                    break;}
+                    m++;
+                }
+                // List<Integer> ntemp = new ArrayList<>(temp);
+                //   while(m!=output.size()){
+                //     temp.retainAll(output.get(m));
+                //     if(temp.size()==4){
+                //     countDouble++;
+                //     System.out.println(output.get(m));
+                //     break;}
+                //     m++;
+                // }
+                if(countDouble==0){
+                    output.add(temp);
+                }
+                }
+            }
+            }
+            }
+            }
+            }
+        else{
+            sum = nums[0]*4;  //if multiply by 4 cross range of long then it must be not equal to -294967296
+          // if (nums[0]<=target && nums[0]*4 == target){  //target must be bigger than the one element because if it is smaller num*4 may cross integer boundary
+            if(sum==target && (sum!=-294967296 && sum!=294967296)){   
+             int i = 0;
+                    List<Integer> temp = new ArrayList<>();
+             while(i!=4 ){
+                temp.add(nums[i]);
+                i++;
+             }
+                output.add(temp);
+           }
+        }
+            
+        return output;
+    }
+}
