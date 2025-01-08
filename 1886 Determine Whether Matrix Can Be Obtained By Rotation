@@ -1,0 +1,33 @@
+//this is my 1st  approach it take me 1 hr to solve this in it i rotate it each time 90 degree and check with target 
+// also a better approach also in it check same name file github
+class Solution {
+    public boolean findRotation(int[][] mat, int[][] target) {
+        int[][] new_mat = new int[mat.length][mat.length];
+        int n = mat.length;
+        int ro_count = 0;
+        boolean is_rotate = false;
+        while(ro_count<4){
+        
+        is_rotate = false;
+         
+        for(int i =0;i<n;i++){
+        for(int j =0;j<n;j++){
+          new_mat[j][n-1-i] = mat[i][j];
+          if(new_mat[j][n-1-i]!=target[j][n-1-i]){
+           is_rotate = true;
+          }
+        }
+        }
+        if(is_rotate==false){
+            return true;
+        }
+        for(int i =0;i<n;i++){
+        for(int j =0;j<n;j++){
+         mat[i][j] = new_mat[i][j] ;
+        }
+        }
+     ro_count++;
+        }
+return false;
+    }
+}
