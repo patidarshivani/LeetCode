@@ -1,0 +1,53 @@
+i calculated index on rotating them on each 90, 180,and 270
+and check directly with target with calculated index of mat.
+using if else it save more time of looping and run time.
+and also space time as no more matrix i made to check directly checked in mat
+no rotation direct indexing .
+//this is my 2nd approach as direct checking no rotation 
+
+class Solution {
+    public boolean findRotation(int[][] mat, int[][] target) {
+        // int[][] new_mat = new int[mat.length][mat.length];
+        int n = mat.length;
+        // int ro_count = 0;
+        boolean is_1_ro = true;
+        boolean is_2_ro = true;
+        boolean is_3_ro = true;
+        boolean is_4_ro = true;
+        
+      
+        for(int i =0;i<n;i++){
+        for(int j =0;j<n;j++){
+          if(is_1_ro==true){
+          if(mat[i][j]!=target[i][j]){
+           is_1_ro = false;
+          }
+          }
+          if(is_2_ro==true){
+          if(mat[j][n-1-i]!=target[i][j]){
+           is_2_ro = false;
+          }
+          }
+          if(is_3_ro==true){
+          if(mat[n-1-i][n-1-j]!=target[i][j]){
+           is_3_ro = false;
+          }
+          }
+          if(is_4_ro==true){
+          if(mat[n-1-j][i]!=target[i][j]){
+           is_4_ro = false;
+          }
+          }
+        if(is_1_ro==false && is_2_ro==false  && is_3_ro==false && is_4_ro==false ){
+            return false;
+        }
+        }
+        }
+       
+        if (is_1_ro || is_2_ro || is_3_ro || is_4_ro) {
+    return true;
+}
+
+       return false;
+    }
+}
